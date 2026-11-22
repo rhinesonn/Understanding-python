@@ -1,12 +1,13 @@
 import React from 'react';
-import { ArrowLeft, Printer } from 'lucide-react';
+import { Printer } from 'lucide-react';
 
 interface ExamSheetViewProps {
-  onBack: () => void;
+  onNavigate: (slug: string) => void;
 }
 
 const SHEET_BLOCKS = [
   {
+    id: 'sheet-1',
     title: '1. CS1010A Exam Rules & Syllabus Scope (L6, L11, L12)',
     body: `MIDTERM (20%): Up to L6 | 1x A4 sheet | Expr, Rec/OOG, HOF, ADT
 PE (20%):      90 min, 3 Qs (Q1 Rec/Iter, Q2 Data/Files, Q3 OOP)
@@ -16,6 +17,7 @@ FINAL (45%*):  2 hrs, 90 marks | 2x A4 double-sided sheets
 NOT TESTED:    Memoization & Dynamic Programming (L12 Slide 32)`,
   },
   {
+    id: 'sheet-2',
     title: '2. Tuple vs. List vs. Dict & Mutation Traps (L6–L8)',
     body: `MUTATES IN-PLACE (returns None!):
   lst.append(x)  | lst.extend(seq) | lst.insert(pos, x)
@@ -30,6 +32,7 @@ ALIASING & +=:
   Dict: k in d checks KEYS only (O(1)) | d.get(k, default)`,
   },
   {
+    id: 'sheet-3',
     title: '3. Order of Growth & Lecture 7 Search/Sort Table',
     body: `1 < log n < n < n log n < n^2 < n^3 < Phi^n < 2^n
   fact_rec: O(n) T, O(n) S   | fact_iter: O(n) T, O(1) S
@@ -44,6 +47,7 @@ SEARCHING & SORTING (L7):
   lst.sort(key=, reverse=):  In-place: YES | Stable: YES (even reverse)`,
   },
   {
+    id: 'sheet-4',
     title: '4. Multiset (MSet) 4 Representations (Lecture 8)',
     body: `Implementation   | adjoin   | multiplicity | intersection
 -----------------+----------+--------------+-------------
@@ -54,6 +58,7 @@ Dict (hashable)  | O(1)     | O(1)         | O(i)
 *i, j = unique items. Unbalanced BST degrades to O(n)!`,
   },
   {
+    id: 'sheet-5',
     title: '5. HOF, Signal Processing & File I/O (L4 & L6)',
     body: `# fold2 unifies sum (base=0, +) & product (base=1, *):
 def fold2(op, term, a, nxt, b, base):
@@ -70,11 +75,13 @@ while line != '':
 f.close()`,
   },
   {
+    id: 'sheet-6',
     title: '6. PE Q2 Template: Pivoting, delta/mavg & Top-K Ties (L11)',
     body: `# Pivot rows into dict-of-lists:
 d = {}
 for k, v in rows:
-    d[k] = d.get(k, []) + [v]   # or if k not in d: d[k] = []; d[k].append(v)
+    if k not in d: d[k] = []
+    d[k].append(v)
 
 # delta & mavg & transpose:
 delta = [s[i] - s[i-1] for i in range(1, len(s))]
@@ -87,6 +94,7 @@ cutoff = ranked[min(k, len(ranked)) - 1]['score']
 ans = [r for r in ranked if r['score'] >= cutoff]`,
   },
   {
+    id: 'sheet-7',
     title: '7. Scoping, Default Args & OOP / Diamond MRO (L9)',
     body: `# Scoping: assigning x = ... anywhere makes x LOCAL (UnboundLocalError)!
 # Mutating y[0] += 1 does NOT rebind y -> works on outer list!
@@ -105,6 +113,7 @@ class Child(Parent):
 # Diamond MRO: all subclasses' methods run BEFORE shared superclass!`,
   },
   {
+    id: 'sheet-8',
     title: '8. Exception Handling Control Flow (Lecture 10)',
     body: `try:
     result = x / y
@@ -123,33 +132,36 @@ class MyError(Exception):
   },
 ];
 
-export const ExamSheetView: React.FC<ExamSheetViewProps> = ({ onBack }) => {
+export const SHEET_TOC = SHEET_BLOCKS.map((b) => ({ id: b.id, label: b.title }));
+
+export const ExamSheetView: React.FC<ExamSheetViewProps> = ({ onNavigate }) => {
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
-      <div className="no-print flex items-center justify-between gap-4">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 cursor-pointer"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          All Topics
-        </button>
+    <div className="space-y-6">
+      <div className="no-print flex items-center justify-between gap-4 flex-wrap">
+        <div>
+          <div className="text-xs font-mono font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+            Exam Guides • Printable A4 Reference
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mt-1">
+            CS1010A Exam Helpsheet
+          </h1>
+        </div>
 
         <button
           onClick={() => window.print()}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold cursor-pointer"
         >
           <Printer className="w-3.5 h-3.5" />
           Print / Save A4 PDF
         </button>
       </div>
 
-      <div className="print-only-sheet bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-5">
-        <div className="border-b border-slate-200 pb-3">
-          <h1 className="text-xl font-extrabold text-slate-900">
-            NUS CS1010A — Syllabus Exam Helpsheet (Lectures 1–12)
-          </h1>
-          <p className="text-xs text-slate-500 mt-0.5">
+      <div className="print-only-sheet bg-white dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 space-y-5">
+        <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
+            NUS CS1010A — Syllabus Exam Reference (Lectures 1–12)
+          </h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Midterm (1× A4) • Practical Exam (Open Book, Pure Python) • Final Exam (2× double-sided A4 sheets)
           </p>
         </div>
@@ -157,17 +169,34 @@ export const ExamSheetView: React.FC<ExamSheetViewProps> = ({ onBack }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {SHEET_BLOCKS.map((blk) => (
             <div
-              key={blk.title}
-              className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 break-inside-avoid"
+              key={blk.id}
+              id={blk.id}
+              className="scroll-mt-20 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/60 break-inside-avoid"
             >
-              <h2 className="text-xs font-bold text-slate-900 mb-2">{blk.title}</h2>
-              <pre className="font-mono text-[11px] leading-relaxed text-slate-700 whitespace-pre-wrap">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-slate-100 mb-2">
+                {blk.title}
+              </h3>
+              <pre className="font-mono text-[11px] leading-relaxed text-slate-700 dark:text-slate-300 whitespace-pre-wrap">
                 {blk.body}
               </pre>
             </div>
           ))}
         </div>
       </div>
+
+      <footer className="no-print pt-6 border-t border-slate-200 dark:border-slate-800 flex justify-between">
+        <button
+          onClick={() => onNavigate('08-exceptions')}
+          className="group p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-500 text-left transition-all cursor-pointer"
+        >
+          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+            ← Previous
+          </div>
+          <div className="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 mt-0.5">
+            08. Exceptions &amp; Syllabus Scope
+          </div>
+        </button>
+      </footer>
     </div>
   );
 };

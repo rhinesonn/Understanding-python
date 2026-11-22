@@ -28,9 +28,9 @@ const MiniRecursionDemo: React.FC = () => {
   const curr = steps[Math.min(step, steps.length - 1)];
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4 space-y-3">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 p-4 space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-xs font-semibold text-slate-600">Interactive Trace (Lecture 3)</span>
+        <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">Interactive Trace (Lecture 3)</span>
         <div className="inline-flex rounded-lg bg-slate-200/80 p-0.5 text-xs font-semibold">
           <button
             onClick={() => { setMode('rec'); setStep(0); }}
@@ -109,9 +109,9 @@ const MiniGrowthSlider: React.FC = () => {
   const maxLog = Math.log10(Math.pow(2, n) + 1);
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4 space-y-3">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 p-4 space-y-3">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-xs font-semibold text-slate-600">
+        <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">
           Drag <code className="font-mono">n</code> to compare operations (log-scaled bars)
         </span>
         <div className="flex items-center gap-2.5">
@@ -169,9 +169,9 @@ const MiniHofStepper: React.FC = () => {
   const curr = steps[step];
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4 space-y-3">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-semibold text-slate-600">Step-by-Step HOF Evaluation</span>
+        <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">Step-by-Step HOF Evaluation</span>
         <span className="text-xs font-mono text-slate-400">
           {step + 1} / {steps.length}
         </span>
@@ -179,7 +179,7 @@ const MiniHofStepper: React.FC = () => {
       <div className="rounded-lg bg-slate-900 px-4 py-3 font-mono text-sm text-amber-300">
         {curr.expr}
       </div>
-      <p className="text-xs text-slate-600">{curr.note}</p>
+      <p className="text-xs text-slate-600 dark:text-slate-300">{curr.note}</p>
       <div className="flex items-center justify-between">
         <button
           onClick={() => setStep(0)}
@@ -228,7 +228,7 @@ const MiniMemoryDiagram: React.FC = () => {
   ];
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4 space-y-3">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 p-4 space-y-3">
       <div className="flex items-center justify-between">
         <span className="text-xs font-bold font-mono text-slate-800">{steps[step].title}</span>
         <span className="text-xs font-mono text-slate-400">{step + 1} / 3</span>
@@ -312,7 +312,7 @@ const MiniMemoryDiagram: React.FC = () => {
         </svg>
       </div>
 
-      <p className="text-xs text-slate-600">{steps[step].note}</p>
+      <p className="text-xs text-slate-600 dark:text-slate-300">{steps[step].note}</p>
 
       <div className="flex items-center justify-between">
         <button
@@ -371,9 +371,9 @@ const MiniBinarySearch: React.FC = () => {
   const curr = trace[Math.min(stepIdx, trace.length - 1)];
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4 space-y-3">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 p-4 space-y-3">
       <div className="flex items-center justify-between flex-wrap gap-2">
-        <span className="text-xs font-semibold text-slate-600">Interactive Non-Slicing Pointer Trace</span>
+        <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">Interactive Non-Slicing Pointer Trace</span>
         <label className="text-xs font-semibold text-slate-700 flex items-center gap-2">
           Target:
           <select
@@ -416,7 +416,7 @@ const MiniBinarySearch: React.FC = () => {
         })}
       </div>
 
-      <p className="text-xs text-slate-600">{curr.note}</p>
+      <p className="text-xs text-slate-600 dark:text-slate-300">{curr.note}</p>
 
       <div className="flex items-center justify-between">
         <button
@@ -498,9 +498,9 @@ const MiniMsetComparison: React.FC = () => {
   const rep = MSET_REPS[selected];
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4 space-y-3">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 p-4 space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-xs font-semibold text-slate-600">
+        <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">
           Multiset Representations for {'{1, 1, 1, 2, 3, 3}'} (Lecture 8)
         </span>
       </div>
@@ -526,21 +526,21 @@ const MiniMsetComparison: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-3 gap-2 text-center">
-        <div className="p-2 rounded-lg bg-white border border-slate-200">
+        <div className="p-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
           <div className="text-[10px] font-mono text-slate-400">adjoin_mset</div>
-          <div className="font-mono text-sm font-bold text-slate-900">{rep.adjoin}</div>
+          <div className="font-mono text-sm font-bold text-slate-900 dark:text-slate-100">{rep.adjoin}</div>
         </div>
-        <div className="p-2 rounded-lg bg-white border border-slate-200">
+        <div className="p-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
           <div className="text-[10px] font-mono text-slate-400">multiplicity_of</div>
-          <div className="font-mono text-sm font-bold text-slate-900">{rep.mult}</div>
+          <div className="font-mono text-sm font-bold text-slate-900 dark:text-slate-100">{rep.mult}</div>
         </div>
-        <div className="p-2 rounded-lg bg-white border border-slate-200">
+        <div className="p-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
           <div className="text-[10px] font-mono text-slate-400">intersection_of</div>
-          <div className="font-mono text-sm font-bold text-slate-900">{rep.inter}</div>
+          <div className="font-mono text-sm font-bold text-slate-900 dark:text-slate-100">{rep.inter}</div>
         </div>
       </div>
 
-      <div className="text-xs text-slate-600 space-y-1">
+      <div className="text-xs text-slate-600 dark:text-slate-300 space-y-1">
         <p><strong>How it works:</strong> {rep.how}</p>
         <p><strong>Constraint:</strong> {rep.constraint}</p>
       </div>
@@ -586,9 +586,9 @@ const MiniOopDemo: React.FC = () => {
   }
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4 space-y-3">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 p-4 space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-xs font-semibold text-slate-600">
+        <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">
           Interactive Diamond MRO Explorer (Lecture 9)
         </span>
       </div>
@@ -618,7 +618,7 @@ const MiniOopDemo: React.FC = () => {
         <div className="text-emerald-300">sal.say("Python is cool") → {output}</div>
       </div>
 
-      <p className="text-xs text-slate-600 leading-relaxed">{explanation}</p>
+      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{explanation}</p>
     </div>
   );
 };
@@ -663,9 +663,9 @@ const MiniExceptionFlow: React.FC = () => {
   ];
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4 space-y-3">
+    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 p-4 space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-xs font-semibold text-slate-600">
+        <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">
           Interactive Clause Flow (Lecture 10 `divide_test`)
         </span>
         <div className="flex flex-wrap gap-1.5">
@@ -713,7 +713,7 @@ const MiniExceptionFlow: React.FC = () => {
         {c.out}
       </div>
 
-      <p className="text-xs text-slate-600 leading-relaxed">{c.note}</p>
+      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{c.note}</p>
     </div>
   );
 };
