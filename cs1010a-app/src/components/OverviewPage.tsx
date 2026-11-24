@@ -120,23 +120,43 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({ solvedIds, onNavigat
           })}
         </div>
 
-        <button
-          onClick={() => onNavigate('a4-helpsheet')}
-          className="w-full p-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500 bg-slate-50/70 dark:bg-slate-900/40 flex items-center justify-between text-left transition-all cursor-pointer"
-        >
-          <div className="flex items-center gap-3">
-            <FileText className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-            <div>
-              <div className="text-sm font-bold text-slate-900 dark:text-slate-100">
-                Printable A4 Exam Helpsheet
-              </div>
-              <div className="text-xs text-slate-500 dark:text-slate-400">
-                8-block Lectures 1–12 summary formatted for Midterm (1× A4), PE, and Finals (2× A4).
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button
+            onClick={() => onNavigate('exam-playbook')}
+            className="w-full p-4 rounded-xl border border-indigo-200 dark:border-indigo-900/70 hover:border-indigo-400 dark:hover:border-indigo-500 bg-indigo-50/60 dark:bg-indigo-950/30 flex items-center justify-between text-left transition-all cursor-pointer"
+          >
+            <div className="flex items-center gap-3">
+              <FileText className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+              <div>
+                <div className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                  Playbook: Tracing &amp; Writing Code
+                </div>
+                <div className="text-xs text-slate-600 dark:text-slate-400">
+                  Step-by-step blueprints for writing code + interactive paper-tracing drills.
+                </div>
               </div>
             </div>
-          </div>
-          <ArrowRight className="w-4 h-4 text-slate-400" />
-        </button>
+            <ArrowRight className="w-4 h-4 text-indigo-500 shrink-0" />
+          </button>
+
+          <button
+            onClick={() => onNavigate('a4-helpsheet')}
+            className="w-full p-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500 bg-slate-50/70 dark:bg-slate-900/40 flex items-center justify-between text-left transition-all cursor-pointer"
+          >
+            <div className="flex items-center gap-3">
+              <FileText className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+              <div>
+                <div className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                  Printable A4 Exam Helpsheet
+                </div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  8-block Lectures 1–12 summary for Midterm (1× A4), PE, and Finals (2× A4).
+                </div>
+              </div>
+            </div>
+            <ArrowRight className="w-4 h-4 text-slate-400 shrink-0" />
+          </button>
+        </div>
       </section>
 
       {/* Footer Next Button */}

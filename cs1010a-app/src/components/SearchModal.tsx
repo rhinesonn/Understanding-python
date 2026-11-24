@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search, X, ArrowRight, FileText, AlertTriangle, BookOpen, PenTool } from 'lucide-react';
 import { TOPICS } from '../data/topics';
 import { OVERVIEW_UNIT, UNIT_META } from '../data/courseGuide';
+import { GUIDED_TRACE_DRILLS, WRITING_BLUEPRINTS } from '../data/playbook';
 
 interface SearchResult {
   slug: string;
@@ -83,6 +84,28 @@ export const SearchModal: React.FC<SearchModalProps> = ({ open, onClose, onJump 
           snippet: pq.explanation,
           kind: 'practice',
         });
+      });
+    });
+
+    WRITING_BLUEPRINTS.forEach((bp) => {
+      items.push({
+        slug: 'exam-playbook',
+        anchor: 'writing-blueprint',
+        unitLabel: `Playbook • Writing Code (${bp.lectureRef})`,
+        title: `Blueprint: ${bp.label}`,
+        snippet: `${bp.whenToUse} ${bp.steps.map((s) => s.title).join(' ')}`,
+        kind: 'overview',
+      });
+    });
+
+    GUIDED_TRACE_DRILLS.forEach((d) => {
+      items.push({
+        slug: 'exam-playbook',
+        anchor: 'guided-drills',
+        unitLabel: `Playbook • Guided Trace (${d.topicTag})`,
+        title: d.title.replace(/`/g, ''),
+        snippet: `${d.methodUsed} ${d.finalTakeaway}`,
+        kind: 'practice',
       });
     });
 

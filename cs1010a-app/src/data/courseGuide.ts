@@ -515,7 +515,10 @@ export const NAV_GROUPS: NavGroup[] = [
   },
   {
     label: 'Exam Guides',
-    items: [{ slug: 'a4-helpsheet', title: 'A4. Printable Exam Helpsheet' }],
+    items: [
+      { slug: 'exam-playbook', title: 'Playbook: Tracing & Writing Code' },
+      { slug: 'a4-helpsheet', title: 'A4. Printable Exam Helpsheet' },
+    ],
   },
 ];
 

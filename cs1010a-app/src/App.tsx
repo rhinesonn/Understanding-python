@@ -15,6 +15,7 @@ import { NAV_GROUPS, ORDERED_SLUGS, OVERVIEW_UNIT, UNIT_META } from './data/cour
 import { OverviewPage } from './components/OverviewPage';
 import { UnitPage } from './components/UnitPage';
 import { ExamSheetView, SHEET_TOC } from './components/ExamSheetView';
+import { PlaybookPage, PLAYBOOK_TOC } from './components/PlaybookPage';
 import { SearchModal } from './components/SearchModal';
 
 const STORAGE_KEY = 'cs1010a_syllabus_progress_v3';
@@ -152,6 +153,9 @@ export const App: React.FC = () => {
         ...OVERVIEW_UNIT.sections.map((s) => ({ id: s.id, label: s.title })),
         { id: 'unit-index', label: 'Course Units Index' },
       ];
+    }
+    if (activeSlug === 'exam-playbook') {
+      return PLAYBOOK_TOC;
     }
     if (activeSlug === 'a4-helpsheet') {
       return SHEET_TOC;
@@ -376,6 +380,8 @@ export const App: React.FC = () => {
                 onNavigate={navigate}
               />
             )}
+
+            {activeSlug === 'exam-playbook' && <PlaybookPage onNavigate={navigate} />}
 
             {activeSlug === 'a4-helpsheet' && <ExamSheetView onNavigate={navigate} />}
           </div>

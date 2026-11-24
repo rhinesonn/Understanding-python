@@ -186,14 +186,14 @@ export const ExamSheetView: React.FC<ExamSheetViewProps> = ({ onNavigate }) => {
 
       <footer className="no-print pt-6 border-t border-slate-200 dark:border-slate-800 flex justify-between">
         <button
-          onClick={() => onNavigate('08-exceptions')}
+          onClick={() => onNavigate('exam-playbook')}
           className="group p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-500 text-left transition-all cursor-pointer"
         >
           <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
             ← Previous
           </div>
           <div className="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 mt-0.5">
-            08. Exceptions &amp; Syllabus Scope
+            Playbook: Tracing &amp; Writing Code
           </div>
         </button>
       </footer>
